@@ -148,7 +148,6 @@ namespace EsimeneTund
             }
                 
         }
-
         public static string pikk(float pikk_inim)
         {
             if (pikk_inim >= 160)
@@ -159,7 +158,12 @@ namespace EsimeneTund
             {
                 return "Чувак ты среднего роста";
             }
-            else { return "Чувак ты очень высокий" }
+            else if (pikk_inim >= 210) {
+                return "Чувак ты очень высокий";
+            }
+            else {
+                return "Чувак ты очень высокий";
+            }
         }
     }
 }
