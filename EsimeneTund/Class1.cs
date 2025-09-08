@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace EsimeneTund
         public static void Main(string[] args) {
             Random rnd = new Random();
             Console.OutputEncoding = Encoding.UTF8;
+
+            double[] arvud = Class3.Tekstist_arvud();
+            var tulemus = Class3.AnalusArve(arvud);
+            Console.WriteLine($"Summa = {tulemus.Item1:F2}, Keskmine = {tulemus.Item2:F2}, Korrutis = {tulemus.Item3:F2}");
+
+
             //Osa Massiivid, List, Kordused
             int j = 0;
             List<Isik> isikukod = new List<Isik>();
