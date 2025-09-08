@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
@@ -14,94 +15,146 @@ namespace EsimeneTund
     {
         public static void Main(string[] args) {
             Random rnd = new Random();
-            //Ulesanne 6
-
-            Console.WriteLine("Напиши свой рост");
-            float pikk_in = Console.ReadLine();
-            Console.WriteLine(Class2.pikk(pikk_in);
-
-            //Ulesanne 5
-
-            Console.WriteLine("Kirjuta temperatuur: ");
-            float temp = float.Parse(Console.ReadLine());
-
-            Console.WriteLine(Class2.temp(temp));
-
-            //Ulesanne 4
-
-            Console.WriteLine("Kirjuta hind: ");
-            try
+            Console.OutputEncoding = Encoding.UTF8;
+            //Osa Massiivid, List, Kordused
+            int j = 0;
+            List<Isik> isikukod = new List<Isik>();
+            j = 0;
+            do
             {
-                float hind = float.Parse(Console.ReadLine());
-                float uue_hind = Class2.soodused(hind);
-                Console.WriteLine($"Sinu hind sooduseta {uue_hind}");
+                Console.WriteLine(j + 1);
+                Isik isik = new Isik();
+                Console.WriteLine("Eesnimi: ");
+                isik.eesNimi = Console.ReadLine();
+                isikukod.Add(isik);
+                j++;
             }
-            catch (Exception e)
+            while (j < 10);
+            isikukod.Sort((x, y) => x.eesNimi.CompareTo(y.eesNimi));
+            Console.WriteLine("Kokku on", isikukod.Count(), " isikud");
+            foreach (Isik isik in isikukod)
             {
-                Console.WriteLine(e);
+                isik.printInfo();
             }
 
-            //Ulesanne 3
-
-            Console.WriteLine("Pikk: ");
-            int a_pikk = rnd.Next(100, 300);
-            int b_pikk = rnd.Next(300, 450);
-            Console.WriteLine($"A = {a_pikk} ja B = {b_pikk}");
-
-            int S_pram = Class2.pram(a_pikk, b_pikk);
-
-            Console.WriteLine("Kas soovite uut remonti?");
-            string inimene = Console.ReadLine();
-
-            if (inimene.ToLower() == "jah")
+            List<string> nimed = new List<string>();
+            for (int i = 0; i < 10; i++)
             {
-                try
-                {
-                    Console.WriteLine("Kui palju on ruutmeeter: ");
-                    string input = Console.ReadLine();
-                    int inimene1 = int.Parse(input);
-                    int ruut_hind = inimene1 * 50;
-                    Console.WriteLine($"Uue remont oli {ruut_hind} euro");
-                }
-                catch (Exception x)
-                {
-                    Console.WriteLine(x);
-                }
+                Console.WriteLine($"{i + 1}. Nimi: ");
+                nimed.Add(Console.ReadLine());
             }
-            else
+            foreach (string nimi in nimed)
             {
-                Console.WriteLine("Ok");
+                Console.WriteLine(nimi);
             }
-
-
-            //Ulesanne 2
-            Console.WriteLine("Kirjuta nimi 1: ");
-            string nimi1 = Console.ReadLine();
-            Console.WriteLine("Kirjuta nimi 2: ");
-            string nimi2 = Console.ReadLine();
-
-            Console.WriteLine(Class2.pinginaabrid(nimi1, nimi2));
-
-            //Ulesanne 1
-            Console.WriteLine("Kes on sinu nimi?");
-            string nimi_vastus = Console.ReadLine();
-            if (nimi_vastus.ToLower() == "juku")
+            int[] arvutid = new int[10];
+            while (j < 10)
             {
-                try
-                {
-                    Console.WriteLine("AEG kakoi?: ");
-                    int aeg = int.Parse(Console.ReadLine());
-                    Console.WriteLine(Class2.juuki_aeg(aeg));
-                }
-                catch (Exception x)
-                {
-                    Console.WriteLine(x);
-                }
+                Console.WriteLine(j + 1);
+                arvutid[j] = rnd.Next(1, 101);
+                j++;
             }
-            else
+            foreach (int arv in arvutid)
             {
-                Console.WriteLine("Sa ei ole Juku !!!");
+                Console.WriteLine(arv);
             }
+            j = 0;
+            do
+            {
+                Console.WriteLine(j + 1);
+                j++;
+            }
+            while (j < 10);
+
+
+            ////Ulesanne 6
+
+            //Console.WriteLine("Напиши свой рост");
+            //float pikk_in = Console.ReadLine();
+            //Console.WriteLine(Class2.pikk(pikk_in);
+
+            ////Ulesanne 5
+
+            //Console.WriteLine("Kirjuta temperatuur: ");
+            //float temp = float.Parse(Console.ReadLine());
+
+            //Console.WriteLine(Class2.temp(temp));
+
+            ////Ulesanne 4
+
+            //Console.WriteLine("Kirjuta hind: ");
+            //try
+            //{
+            //    float hind = float.Parse(Console.ReadLine());
+            //    float uue_hind = Class2.soodused(hind);
+            //    Console.WriteLine($"Sinu hind sooduseta {uue_hind}");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
+
+            ////Ulesanne 3
+
+            //Console.WriteLine("Pikk: ");
+            //int a_pikk = rnd.Next(100, 300);
+            //int b_pikk = rnd.Next(300, 450);
+            //Console.WriteLine($"A = {a_pikk} ja B = {b_pikk}");
+
+            //int S_pram = Class2.pram(a_pikk, b_pikk);
+
+            //Console.WriteLine("Kas soovite uut remonti?");
+            //string inimene = Console.ReadLine();
+
+            //if (inimene.ToLower() == "jah")
+            //{
+            //    try
+            //    {
+            //        Console.WriteLine("Kui palju on ruutmeeter: ");
+            //        string input = Console.ReadLine();
+            //        int inimene1 = int.Parse(input);
+            //        int ruut_hind = inimene1 * 50;
+            //        Console.WriteLine($"Uue remont oli {ruut_hind} euro");
+            //    }
+            //    catch (Exception x)
+            //    {
+            //        Console.WriteLine(x);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Ok");
+            //}
+
+
+            ////Ulesanne 2
+            //Console.WriteLine("Kirjuta nimi 1: ");
+            //string nimi1 = Console.ReadLine();
+            //Console.WriteLine("Kirjuta nimi 2: ");
+            //string nimi2 = Console.ReadLine();
+
+            //Console.WriteLine(Class2.pinginaabrid(nimi1, nimi2));
+
+            ////Ulesanne 1
+            //Console.WriteLine("Kes on sinu nimi?");
+            //string nimi_vastus = Console.ReadLine();
+            //if (nimi_vastus.ToLower() == "juku")
+            //{
+            //    try
+            //    {
+            //        Console.WriteLine("AEG kakoi?: ");
+            //        int aeg = int.Parse(Console.ReadLine());
+            //        Console.WriteLine(Class2.juuki_aeg(aeg));
+            //    }
+            //    catch (Exception x)
+            //    {
+            //        Console.WriteLine(x);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Sa ei ole Juku !!!");
+            //}
 
 
             //2 osa
@@ -155,6 +208,5 @@ namespace EsimeneTund
             //float vastus = Class2.Kalulaator(f, b);
             //Console.WriteLine($"Korrutis on {vastus}");
         }
-
     }
 }
