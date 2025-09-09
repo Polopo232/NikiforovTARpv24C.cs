@@ -18,6 +18,34 @@ namespace EsimeneTund
             Random rnd = new Random();
             Console.OutputEncoding = Encoding.UTF8;
 
+            List<Inimene> inimesed = new List<Inimene>();
+
+            int j = 0;
+            do
+            {
+                Console.WriteLine($"Человек {j + 1}:");
+
+                Inimene inimene = new Inimene();
+
+                Console.Write("Имя: ");
+                inimene.eesnimi = Console.ReadLine();
+
+                Console.Write("Возраст: ");
+                inimene.aeg = int.Parse(Console.ReadLine());
+
+                inimesed.Add(inimene);
+                j++;
+            }
+            while (j < 3);
+
+            Console.WriteLine("Все люди:");
+            foreach (Inimene inimene in inimesed)
+            {
+                inimene.printInfo();
+            }
+
+            while (true);
+
             double[] arvud = Class3.Tekstist_arvud();
             var tulemus = Class3.AnalusArve(arvud);
             Console.WriteLine($"Summa = {tulemus.Item1:F2}, Keskmine = {tulemus.Item2:F2}, Korrutis = {tulemus.Item3:F2}");
