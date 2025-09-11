@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace EsimeneTund;
 
-namespace EsimeneTund
+internal class Inimene
 {
-    internal class Inimene
-    {
-        public string eesnimi;
-        public int aeg;
-        public Inimene() { }
+    public string eesnimi;
+    public int aeg;
+    public Inimene() { }
 
-        public Inimene(string eesnimi, int aeg)
-        {
-            this.eesnimi = eesnimi;
-            this.aeg = aeg;
-        }
-        public void printInfo()
-        {
-            Console.WriteLine($"Inimene nimi on {eesnimi} ja {aeg} vana");
-        }
+    public Inimene(string eesnimi, int aeg)
+    {
+        this.eesnimi = eesnimi;
+        this.aeg = aeg;
+    }
+    public void printInfo()
+    {
+        Console.WriteLine($"Inimene nimi on {eesnimi} ja {aeg} vana");
     }
 }
