@@ -106,13 +106,14 @@ internal class Class3
         }
 
     }
+    // Ulesanne 6
     public static void SuurimNeljarv(double[] arvud)
     {
         // 1573 -> 7531
         Array.Sort(arvud);
         Console.WriteLine($"Suurim neljarv on: {arvud[3]}{arvud[2]}{arvud[1]}{arvud[0]}");
     }
-
+    // Ulesanne 7
     public static void GenereeriKorrutustabel(int ridadeArv, int veergudeArv)
     {
         int[,] tabel = new int[ridadeArv + 1, veergudeArv + 1];
@@ -124,6 +125,40 @@ internal class Class3
                 Console.Write($"{tabel[i, j].ToString().PadLeft(4)}");
             }
             Console.WriteLine();
+        }
+    }
+
+    public static void Opelased(string[] opelased)
+    {
+        foreach (var item in opelased)
+        {
+            Console.Write(item + "  ");
+        }
+
+        opelased[2] = "Kati";
+        opelased[5] = "Mati";
+        Console.WriteLine();
+        foreach (var item in opelased)
+        {
+            Console.Write(item + "  ");
+        }
+
+
+        int j = 0;
+        Console.WriteLine();
+        while (j < opelased.Length)
+        {
+            string nimi = opelased[j];
+            if (nimi[0] == 'A')
+            {
+                Console.WriteLine($"Tere! {nimi}");
+            }
+            j++;
+        }
+
+        for (int i = 0; i < opelased.Length; i++)
+        {
+            Console.WriteLine(opelased[i] +" "+ i);
         }
     }
 

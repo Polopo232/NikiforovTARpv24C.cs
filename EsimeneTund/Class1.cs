@@ -8,7 +8,11 @@ internal class Class1
         Random rnd = new Random();
         Console.OutputEncoding = Encoding.UTF8;
 
-        Class3.GenereeriKorrutustabel(10, 10);
+        string[] opelased = new string[] { "Juku", "Kati", "Mati", "Jüri", "Mari", "Artjom", "Artjom" };
+
+        Class3.Opelased(opelased);
+
+        Class3.GenereeriKorrutustabel(25, 25);
 
         Class3.SuurimNeljarv([1, 5, 7, 3]);
 
