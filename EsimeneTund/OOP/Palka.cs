@@ -1,6 +1,6 @@
 ﻿namespace EsimeneTund.OOP
 {
-    internal class Palka : OOP.Inimene
+    internal class Palka : OOP.Töötaja
     {
         public decimal Palk;
 
