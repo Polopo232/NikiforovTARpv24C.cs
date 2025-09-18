@@ -1,0 +1,15 @@
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.AssemblyInfoInputs.cache
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.AssemblyInfo.cs
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.csproj.CoreCompileInputs.cache
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.sourcelink.json
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\bin\Debug\net8.0\EsimeneTund.exe
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\bin\Debug\net8.0\EsimeneTund.deps.json
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\bin\Debug\net8.0\EsimeneTund.runtimeconfig.json
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\bin\Debug\net8.0\EsimeneTund.dll
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\bin\Debug\net8.0\EsimeneTund.pdb
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.dll
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\refint\EsimeneTund.dll
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.pdb
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\EsimeneTund.genruntimeconfig.cache
+C:\Users\opilane\Source\Repos\NikiforovTARpv24C.cs\EsimeneTund\obj\Debug\net8.0\ref\EsimeneTund.dll
