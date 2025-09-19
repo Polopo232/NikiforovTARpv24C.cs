@@ -72,10 +72,8 @@ internal class Funktsionid
 
     public static void MaajaPea()
     {
-        // Loome sõnastiku: võti - maakonna nimi, väärtus - pealinn
         Dictionary<string, string> maakonnad = new Dictionary<string, string>();
 
-        // Lisame mõned näited
         maakonnad["Harju"] = "Tallinn";
         maakonnad["Tartu"] = "Tartu";
         maakonnad["Pärnu"] = "Pärnu";
@@ -156,16 +154,14 @@ internal class Funktsionid
             }
             else if (valik == "4")
             {
-                // Mängurežiim
                 Random rnd = new Random();
-                int kokku = 0;    // Küsitavate arv
-                int õiged = 0;    // Õigete vastuste arv
+                int kokku = 0;
+                int õiged = 0;
 
-                // Loome nimekirjad maakondadest ja pealinnadest
                 List<string> maakondadeNimed = new List<string>(maakonnad.Keys);
                 List<string> pealinnadeNimed = new List<string>(maakonnad.Values);
 
-                for (int i = 0; i < 5; i++)  // 5 küsimust
+                for (int i = 0; i < 5; i++)
                 {
                     kokku++;
                     int valikMäng = rnd.Next(0, 2);
@@ -226,7 +222,7 @@ internal class Funktsionid
                 Console.WriteLine("Vale valik, proovi uuesti.");
             }
 
-            Console.WriteLine(); // Tühi rida eraldamiseks
+            Console.WriteLine();
         }
     }
 
@@ -309,4 +305,78 @@ internal class Funktsionid
             return grupeeritud;
             }
 
+    public static void OpilasedJaHinnete()
+    {
+        Õpilane opilane1 = new Õpilane();
+        opilane1.Nimi = "Anna";
+        opilane1.Hinded = new List<int> { 4, 5, 3, 4 };
+
+        Õpilane opilane2 = new Õpilane();
+        opilane2.Nimi = "Mati";
+        opilane2.Hinded = new List<int> { 3, 3, 4, 5, 2 };
+
+        Õpilane opilane3 = new Õpilane();
+        opilane3.Nimi = "Kati";
+        opilane3.Hinded = new List<int> { 5, 5, 4 };
+
+        List<Õpilane> opilased = new List<Õpilane> { opilane1, opilane2, opilane3 };
+
+        double parimKeskmine = 0;
+        string parimNimi = "";
+
+        foreach (Õpilane opilane in opilased)
+        {
+            double summa = 0;
+            foreach (int hinne in opilane.Hinded)
+            {
+                summa = summa + hinne;
+            }
+            double keskmine = summa / opilane.Hinded.Count;
+
+            Console.WriteLine(opilane.Nimi + " keskmine hinne: " + keskmine);
+
+            if (keskmine > parimKeskmine)
+            {
+                parimKeskmine = keskmine;
+                parimNimi = opilane.Nimi;
+            }
+        }
+
+        Console.WriteLine("Parim keskmine on " + parimNimi + "-l: " + parimKeskmine);
+
+        Console.WriteLine("\nSorteeritud keskmised (kahanevalt):");
+        List<double> keskmised = new List<double>();
+        List<string> nimed = new List<string>();
+
+        foreach (Õpilane opilane in opilased)
+        {
+            double summa = 0;
+            foreach (int hinne in opilane.Hinded)
+            {
+                summa = summa + hinne;
+            }
+            keskmised.Add(summa / opilane.Hinded.Count);
+            nimed.Add(opilane.Nimi);
+        }
+        for (int i = 0; i < keskmised.Count; i++)
+        {
+            for (int j = i + 1; j < keskmised.Count; j++)
+            {
+                if (keskmised[i] < keskmised[j])
+                {
+                    double temp = keskmised[i];
+                    keskmised[i] = keskmised[j];
+                    keskmised[j] = temp;
+
+                    string tempNimi = nimed[i];
+                    nimed[i] = nimed[j];
+                    nimed[j] = tempNimi;
+                }
+            }
+        }
+        for (int i = 0; i < keskmised.Count; i++)
+        {
+            Console.WriteLine(nimed[i] + ": " + keskmised[i]);
+        }
+    }
 }

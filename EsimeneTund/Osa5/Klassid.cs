@@ -55,6 +55,27 @@ internal class Inimene
             this.zanr = zanr;
         }
     }
+    internal class Õpilane
+    {
+        public string Nimi;
+        public List<int> Hinded = new List<int>();
+
+        public Õpilane(string nimi)
+        {
+            Nimi = nimi;
+        }
+
+        public Õpilane(string nimi, List<int> hinded)
+        {
+            Nimi = nimi;
+            Hinded = hinded;
+        }
+        public Õpilane()
+        {
+            Nimi = "";
+            Hinded = new List<int>();
+        }
+    }
 
 
 

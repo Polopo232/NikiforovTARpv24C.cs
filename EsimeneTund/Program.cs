@@ -10,6 +10,10 @@ internal class Program
         var rnd = new Random();
         Console.OutputEncoding = Encoding.UTF8;
 
+        osa5.Funktsionid.OpilasedJaHinnete();
+
+        Console.WriteLine();
+
         osa5.Funktsionid.Filmid();
 
         Console.WriteLine();
