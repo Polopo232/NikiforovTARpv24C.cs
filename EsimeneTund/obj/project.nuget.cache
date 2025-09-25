@@ -1,8 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "e0YrCIsndpw=",
+  "dgSpecHash": "T9GKEjDWEXE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\NikiforovTARpv24C.cs\\EsimeneTund\\EsimeneTund.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Ja\\Desktop\\code\\cs\\EsimeneTund\\EsimeneTund\\EsimeneTund.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ja\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\naudio.core\\2.0.0\\naudio.core.2.0.0.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\naudio.waveformrenderer\\2.0.0\\naudio.waveformrenderer.2.0.0.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\system.drawing.common\\5.0.1\\system.drawing.common.5.0.1.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\system.windows.extensions\\9.0.9\\system.windows.extensions.9.0.9.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.20\\microsoft.windowsdesktop.app.ref.8.0.20.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.20\\microsoft.netcore.app.ref.8.0.20.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.20\\microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512",
+    "C:\\Users\\Ja\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.20\\microsoft.netcore.app.host.win-x64.8.0.20.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -68,5 +68,12 @@ class Snake : Figure
             return false;
         }
     }
+    public void Clear()
+    {
+        foreach (Point p in pList)
+        {
+            p.Clear();
+        }
+    }
 
 }
