@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EsimeneTund")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d658b3ffe08780b4e3e261989138fdfbb0d996ea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61aa5b7e802753580ac19c98e03985b297fa76c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("EsimeneTund")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EsimeneTund")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
