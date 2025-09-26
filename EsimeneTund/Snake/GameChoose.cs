@@ -13,6 +13,7 @@ internal class GameChoose
         Console.WriteLine("1. Tavaline");
         Console.WriteLine("2. SpeedUP");
         Console.WriteLine("3. Inversioon");
+        Console.WriteLine("4. Expert");
 
         while (true)
         {
@@ -31,6 +32,7 @@ internal class GameChoose
                 Console.WriteLine("1. Tavaline");
                 Console.WriteLine("2. SpeedUP");
                 Console.WriteLine("3. Inversioon");
+                Console.WriteLine("4. Expert");
             }
         }
 
@@ -56,6 +58,13 @@ internal class GameChoose
             speed = 100;
             inversion = true;
             Console.WriteLine("Valisid inversiooni režiimi");
+        }
+        else if (input == 4)
+        {
+            chosenMode = 4;
+            speed = 80;
+            inversion = false;
+            Console.WriteLine("Valisid Expert režiimi");
         }
         else
         {

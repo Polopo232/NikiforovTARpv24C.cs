@@ -68,6 +68,10 @@ class Snake : Figure
             return false;
         }
     }
+    public Point Head
+    {
+        get { return pList[0]; }
+    }
     public void Clear()
     {
         foreach (Point p in pList)

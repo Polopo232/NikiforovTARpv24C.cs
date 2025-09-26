@@ -9,6 +9,7 @@ internal class SnakeProgram
     static int extraLives = 0;
     static Point specialFood = null;
     static DateTime lastSpecialFoodTime = DateTime.Now;
+    static DateTime lastBombTime = DateTime.Now;    
 
     static void Main(string[] args)
     {
@@ -51,11 +52,33 @@ internal class SnakeProgram
 
         FoodCreator foodcreator = new FoodCreator(80, 25, '$');
         SpecialFoodCreator specialFoodCreator = new SpecialFoodCreator(80, 25, '♥');
+        Bomb bombCreator = new Bomb(80, 25, '☢');
+        Bomb bomb = null;
         Snake.Point food = foodcreator.CreateFood();
         food.Draw();
 
         while (true)
         {
+            if (gameChoose.chosenMode == 4)
+            {
+                if (bomb == null && (DateTime.Now - lastBombTime).TotalSeconds >= 10)
+                {
+                    bomb = new Bomb(80, 25, '☢');
+                    lastBombTime = DateTime.Now;
+                }
+                if (bomb != null && snake.Head.Equals(bomb.Position))
+                {
+                    extraLives--;
+                    DrawScore.UpdateLivesDisplay(extraLives);
+                    bomb.Clear();
+                    bomb = null;
+                }
+            }
+            else
+            {
+                fast = 100;
+            }
+
             if ((DateTime.Now - lastSpecialFoodTime).TotalSeconds >= 30 && specialFood == null)
             {
                 specialFood = specialFoodCreator.CreateSpecialFood();
