@@ -18,6 +18,7 @@ internal class SnakeProgram
 
         int score = 0;
         int fast = 100;
+        int bombCount = 0;
         string name = "";
         bool game_over = false;
 
@@ -52,8 +53,10 @@ internal class SnakeProgram
 
         FoodCreator foodcreator = new FoodCreator(80, 25, '$');
         SpecialFoodCreator specialFoodCreator = new SpecialFoodCreator(80, 25, '♥');
+
         Bomb bombCreator = new Bomb(80, 25, '☢');
         Bomb bomb = null;
+
         Snake.Point food = foodcreator.CreateFood();
         food.Draw();
 
@@ -61,17 +64,13 @@ internal class SnakeProgram
         {
             if (gameChoose.chosenMode == 4)
             {
-                if (bomb == null && (DateTime.Now - lastBombTime).TotalSeconds >= 10)
+                
+                if (bombCount <= 20 && (DateTime.Now - lastBombTime).TotalSeconds >= 1)
                 {
                     bomb = new Bomb(80, 25, '☢');
                     lastBombTime = DateTime.Now;
-                }
-                if (bomb != null && snake.Head.Equals(bomb.Position))
-                {
-                    extraLives--;
-                    DrawScore.UpdateLivesDisplay(extraLives);
-                    bomb.Clear();
-                    bomb = null;
+                    bomb?.Draw();
+                    bombCount++;
                 }
             }
             else
@@ -79,11 +78,12 @@ internal class SnakeProgram
                 fast = 100;
             }
 
-            if ((DateTime.Now - lastSpecialFoodTime).TotalSeconds >= 30 && specialFood == null)
+            if ((DateTime.Now - lastSpecialFoodTime).TotalSeconds >= 1 && specialFood == null)
             {
-                specialFood = specialFoodCreator.CreateSpecialFood();
-                specialFood.Draw();
-                lastSpecialFoodTime = DateTime.Now;
+                if (gameChoose.chosenMode != 4)
+                    specialFood = specialFoodCreator.CreateSpecialFood();
+                    specialFood?.Draw();
+                    lastSpecialFoodTime = DateTime.Now;
             }
 
             if (Console.KeyAvailable)
@@ -92,7 +92,7 @@ internal class SnakeProgram
                 gameChoose.HandleKeyInversion(snake, key);
             }
 
-            if (walls.IsHit(snake) || snake.IsHitTail())
+            if ((bomb != null && bomb.Position.IsHit(snake.Head)) || walls.IsHit(snake) || snake.IsHitTail())
             {
                 if (extraLives > 0)
                 {
@@ -212,7 +212,7 @@ internal class SnakeProgram
             }
             using (StreamWriter text = new StreamWriter(path, true))
             {
-                text.WriteLine($"{name}: {score}");
+                if (score != 0) { text.WriteLine($"{name}: {score}"); }
             }
         }
 
