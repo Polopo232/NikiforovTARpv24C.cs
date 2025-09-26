@@ -6,7 +6,7 @@ namespace EsimeneTund;
 
 internal class SnakeProgram
 {
-    static int extraLives = 0 ;
+    static int extraLives = 0;
     static Point specialFood = null;
     static DateTime lastSpecialFoodTime = DateTime.Now;
 
@@ -45,7 +45,7 @@ internal class SnakeProgram
         Console.SetCursorPosition(0, 0);
         Console.CursorVisible = false;
 
-        Point startPoint = new Point(4, 5, '*');
+        Point startPoint = new Point(4, 5, '■');
         Snake.Snake snake = new Snake.Snake(startPoint, 4, Direction.RIGHT);
         snake.Draw();
 
@@ -78,10 +78,10 @@ internal class SnakeProgram
 
                     snake.Clear();
 
-                    startPoint = new Point(4, 5, '*');
-                    snake = new Snake.Snake(startPoint, 4, Direction.RIGHT);
+                    startPoint = new Point(4, 5, '■');
+                    var newsnake = new Snake.Snake(startPoint, 4 + snake.pList.Count, Direction.RIGHT);
+                    snake = newsnake;
                     snake.Draw();
-
                     continue;
                 }
                 else
@@ -126,15 +126,13 @@ internal class SnakeProgram
                         }
                         for (int i = 0; i < names.Count; i++)
                         {
-                            Console.WriteLine($"{names[i]}: {scores[i]}");
+                            Console.WriteLine($"{i + 1}. {names[i]}: {scores[i]}");
                         }
                     }
                     game_over = true;
                     break;
                 }
-                
             }
-
             if (snake.Eat(food))
             {
                 if (File.Exists(soundPath))
@@ -148,10 +146,7 @@ internal class SnakeProgram
                     {
                         
                     }
-
                 }
-
-
                 score ++;
                 DrawScore.UpdateScoreDisplay(score);
                 gameChoose.IncreaseSpeed();
