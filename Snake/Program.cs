@@ -9,7 +9,7 @@ internal class SnakeProgram
     static int extraLives = 0;
     static Point specialFood = null;
     static DateTime lastSpecialFoodTime = DateTime.Now;
-    static DateTime lastBombTime = DateTime.Now;    
+    static DateTime lastBombTime = DateTime.Now;
 
     static void Main(string[] args)
     {
@@ -18,6 +18,7 @@ internal class SnakeProgram
 
         int score = 0;
         int fast = 100;
+        List<Bomb> activeBombs = new List<Bomb>();
         int bombCount = 0;
         string name = "";
         bool game_over = false;
@@ -36,7 +37,6 @@ internal class SnakeProgram
         name = Console.ReadLine();
         Console.Clear();
 
-
         Walls walls = new Walls(80, 25);
         walls.Draw();
 
@@ -54,9 +54,6 @@ internal class SnakeProgram
         FoodCreator foodcreator = new FoodCreator(80, 25, '$');
         SpecialFoodCreator specialFoodCreator = new SpecialFoodCreator(80, 25, '♥');
 
-        Bomb bombCreator = new Bomb(80, 25, '☢');
-        Bomb bomb = null;
-
         Snake.Point food = foodcreator.CreateFood();
         food.Draw();
 
@@ -64,12 +61,12 @@ internal class SnakeProgram
         {
             if (gameChoose.chosenMode == 4)
             {
-                
                 if (bombCount <= 20 && (DateTime.Now - lastBombTime).TotalSeconds >= 1)
                 {
-                    bomb = new Bomb(80, 25, '☢');
+                    Bomb newBomb = new Bomb(80, 25, '☢');
+                    activeBombs.Add(newBomb);
+                    newBomb.Draw();
                     lastBombTime = DateTime.Now;
-                    bomb?.Draw();
                     bombCount++;
                 }
             }
@@ -82,8 +79,8 @@ internal class SnakeProgram
             {
                 if (gameChoose.chosenMode != 4)
                     specialFood = specialFoodCreator.CreateSpecialFood();
-                    specialFood?.Draw();
-                    lastSpecialFoodTime = DateTime.Now;
+                specialFood?.Draw();
+                lastSpecialFoodTime = DateTime.Now;
             }
 
             if (Console.KeyAvailable)
@@ -92,8 +89,27 @@ internal class SnakeProgram
                 gameChoose.HandleKeyInversion(snake, key);
             }
 
-            if ((bomb != null && bomb.Position.IsHit(snake.Head)) || walls.IsHit(snake) || snake.IsHitTail())
+            bool bombHit = false;
+            Bomb hitBomb = null;
+
+            foreach (var currentBomb in activeBombs)
             {
+                if (currentBomb.Position.IsHit(snake.Head))
+                {
+                    bombHit = true;
+                    hitBomb = currentBomb;
+                    break;
+                }
+            }
+
+            if (bombHit || walls.IsHit(snake) || snake.IsHitTail())
+            {
+                if (bombHit)
+                {
+                    hitBomb.Clear();
+                    activeBombs.Remove(hitBomb);
+                }
+
                 if (extraLives > 0)
                 {
                     extraLives--;
@@ -156,6 +172,7 @@ internal class SnakeProgram
                     break;
                 }
             }
+
             if (snake.Eat(food))
             {
                 if (File.Exists(soundPath))
@@ -167,16 +184,15 @@ internal class SnakeProgram
                     }
                     catch (Exception)
                     {
-                        
+
                     }
                 }
-                score ++;
+                score++;
                 DrawScore.UpdateScoreDisplay(score);
                 gameChoose.IncreaseSpeed();
                 food = foodcreator.CreateFood();
                 food.Draw();
             }
-
             else if (specialFood != null && snake.Eat(specialFood))
             {
                 if (File.Exists(specialSoundPath))
@@ -200,7 +216,8 @@ internal class SnakeProgram
             Thread.Sleep(fast);
         }
 
-        if (game_over) { 
+        if (game_over)
+        {
             if (File.Exists(gameOverSoundPath))
             {
                 try

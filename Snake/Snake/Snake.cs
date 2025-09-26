@@ -70,8 +70,9 @@ class Snake : Figure
     }
     public Point Head
     {
-        get { return pList[0]; }
+        get { return pList.Last(); }
     }
+
     public void Clear()
     {
         foreach (Point p in pList)
