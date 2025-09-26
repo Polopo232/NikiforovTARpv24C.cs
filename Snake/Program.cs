@@ -33,8 +33,6 @@ internal class SnakeProgram
 
         DrawScore drawScore = new DrawScore();
 
-        Console.WriteLine("Sisesta nimi: ");
-        name = Console.ReadLine();
         Console.Clear();
 
         Walls walls = new Walls(80, 25);
@@ -61,7 +59,7 @@ internal class SnakeProgram
         {
             if (gameChoose.chosenMode == 4)
             {
-                if (bombCount <= 20 && (DateTime.Now - lastBombTime).TotalSeconds >= 1)
+                if (bombCount <= 20 && (DateTime.Now - lastBombTime).TotalSeconds >= 0.5)
                 {
                     Bomb newBomb = new Bomb(80, 25, '☢');
                     activeBombs.Add(newBomb);
@@ -75,7 +73,7 @@ internal class SnakeProgram
                 fast = 100;
             }
 
-            if ((DateTime.Now - lastSpecialFoodTime).TotalSeconds >= 1 && specialFood == null)
+            if ((DateTime.Now - lastSpecialFoodTime).TotalSeconds >= 30 && specialFood == null)
             {
                 if (gameChoose.chosenMode != 4)
                     specialFood = specialFoodCreator.CreateSpecialFood();
@@ -118,7 +116,7 @@ internal class SnakeProgram
                     snake.Clear();
 
                     startPoint = new Point(4, 5, '■');
-                    var newsnake = new Snake.Snake(startPoint, 4 + snake.pList.Count, Direction.RIGHT);
+                    var newsnake = new Snake.Snake(startPoint, snake.pList.Count, Direction.RIGHT);
                     snake = newsnake;
                     snake.Draw();
                     continue;
@@ -126,8 +124,8 @@ internal class SnakeProgram
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine($"Score: {score}");
-                    Console.WriteLine("Liidrite nimekiri: ");
+                    gameChoose.WriteCentered($"Score: {score}");
+                    gameChoose.WriteCentered("Liidrite nimekiri: ");
                     if (File.Exists(path))
                     {
                         string[] allLines = File.ReadAllLines(path);
@@ -165,8 +163,10 @@ internal class SnakeProgram
                         }
                         for (int i = 0; i < names.Count; i++)
                         {
-                            Console.WriteLine($"{i + 1}. {names[i]}: {scores[i]}");
+                            gameChoose.WriteCentered($"{i + 1}. {names[i]}: {scores[i]}");
                         }
+                        gameChoose.WriteCentered("Sisesta nimi: ");
+                        name = Console.ReadLine();
                     }
                     game_over = true;
                     break;

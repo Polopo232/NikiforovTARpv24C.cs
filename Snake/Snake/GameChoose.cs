@@ -6,14 +6,29 @@ internal class GameChoose
     public int chosenMode = 1;
     public bool inversion = false;
     public int input;
+
+    public void WriteCentered(string text)
+    {
+        try
+        {
+            int consoleWidth = Math.Max(Console.WindowWidth, text.Length + 2);
+            int padding = (consoleWidth - text.Length) / 2;
+            Console.WriteLine(text.PadLeft(padding + text.Length));
+        }
+        catch (Exception)
+        {
+            Console.WriteLine(text);
+        }
+    }
+
     public void ChooseMode()
     {
         Console.Clear();
-        Console.WriteLine("Vali mängurežiim:");
-        Console.WriteLine("1. Tavaline");
-        Console.WriteLine("2. SpeedUP");
-        Console.WriteLine("3. Inversioon");
-        Console.WriteLine("4. Expert");
+        WriteCentered("Vali mängurežiim:");
+        WriteCentered("1. Tavaline");
+        WriteCentered("2. SpeedUP");
+        WriteCentered("3. Inversioon");
+        WriteCentered("4. Expert");
 
         while (true)
         {
@@ -25,14 +40,15 @@ internal class GameChoose
             }
             catch (Exception e)
             {
+                Console.Clear();
 
-                Console.WriteLine(e.Message);
+                WriteCentered(e.Message);
 
-                Console.WriteLine("Vali mängurežiim:");
-                Console.WriteLine("1. Tavaline");
-                Console.WriteLine("2. SpeedUP");
-                Console.WriteLine("3. Inversioon");
-                Console.WriteLine("4. Expert");
+                WriteCentered("Vali mängurežiim:");
+                WriteCentered("1. Tavaline");
+                WriteCentered("2. SpeedUP");
+                WriteCentered("3. Inversioon");
+                WriteCentered("4. Expert");
             }
         }
 
@@ -43,32 +59,32 @@ internal class GameChoose
             chosenMode = 1;
             speed = 100;
             inversion = false;
-            Console.WriteLine("Valisid tavalse režiimi");
+            WriteCentered("Valisid tavalse režiimi");
         }
         else if (input == 2)
         {
             chosenMode = 2;
             speed = 100;
             inversion = false;
-            Console.WriteLine("Valisid SpeedUP režiimi");
+            WriteCentered("Valisid SpeedUP režiimi");
         }
         else if (input == 3)
         {
             chosenMode = 3;
             speed = 100;
             inversion = true;
-            Console.WriteLine("Valisid inversiooni režiimi");
+            WriteCentered("Valisid inversiooni režiimi");
         }
         else if (input == 4)
         {
             chosenMode = 4;
             speed = 80;
             inversion = false;
-            Console.WriteLine("Valisid Expert režiimi");
+            WriteCentered("Valisid Expert režiimi");
         }
         else
         {
-            Console.WriteLine("Vale valik, läheb tavaline režiim");
+            WriteCentered("Vale valik, läheb tavaline režiim");
             chosenMode = 1;
             speed = 100;
             inversion = false;
