@@ -1,6 +1,7 @@
 ﻿using EsimeneTund.Snake;
 using System.Text;
 using System.Media;
+using System.Diagnostics;
 
 namespace EsimeneTund;
 
@@ -55,6 +56,11 @@ internal class SnakeProgram
         Snake.Point food = foodcreator.CreateFood();
         food.Draw();
 
+        void OpenImage(string imagePath)
+        {
+            Process.Start(new ProcessStartInfo(imagePath) { UseShellExecute = true });
+        }
+
         while (true)
         {
             if (gameChoose.chosenMode == 4)
@@ -96,6 +102,7 @@ internal class SnakeProgram
                 {
                     bombHit = true;
                     hitBomb = currentBomb;
+                    OpenImage(@"..\..\..\snakeresourse\explode.png");
                     break;
                 }
             }
