@@ -1,7 +1,9 @@
 ﻿using EsimeneTund.Snake;
-using System.Text;
-using System.Media;
+using Snake.Snake;
 using System.Diagnostics;
+using System.Media;
+using System.Numerics;
+using System.Text;
 
 namespace EsimeneTund;
 
@@ -28,6 +30,8 @@ internal class SnakeProgram
         string soundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\snakeresourse\1point.wav");
         string specialSoundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\snakeresourse\uvelichen-mar.wav");
         string gameOverSoundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\snakeresourse\game-over-mario.wav");
+
+        SoundPlay soundPlay = new SoundPlay();
 
         GameChoose gameChoose = new GameChoose();
         gameChoose.ChooseMode();
@@ -182,18 +186,9 @@ internal class SnakeProgram
 
             if (snake.Eat(food))
             {
-                if (File.Exists(soundPath))
-                {
-                    try
-                    {
-                        SoundPlayer player = new SoundPlayer(soundPath);
-                        player.Play();
-                    }
-                    catch (Exception)
-                    {
+                SoundPlayer player = new SoundPlayer(specialSoundPath);
+                player.Play();
 
-                    }
-                }
                 score++;
                 DrawScore.UpdateScoreDisplay(score);
                 gameChoose.IncreaseSpeed();
@@ -202,16 +197,8 @@ internal class SnakeProgram
             }
             else if (specialFood != null && snake.Eat(specialFood))
             {
-                if (File.Exists(specialSoundPath))
-                {
-                    try
-                    {
-                        SoundPlayer player = new SoundPlayer(specialSoundPath);
-                        player.Play();
-                    }
-                    catch (Exception) { }
-                }
-
+                SoundPlayer player = new SoundPlayer(specialSoundPath);
+                player.Play();
                 extraLives++;
                 DrawScore.UpdateLivesDisplay(extraLives);
                 specialFood = null;
@@ -225,15 +212,8 @@ internal class SnakeProgram
 
         if (game_over)
         {
-            if (File.Exists(gameOverSoundPath))
-            {
-                try
-                {
-                    SoundPlayer player = new SoundPlayer(gameOverSoundPath);
-                    player.Play();
-                }
-                catch (Exception) { }
-            }
+            SoundPlayer player = new SoundPlayer(gameOverSoundPath);
+            player.Play();
             using (StreamWriter text = new StreamWriter(path, true))
             {
                 if (score != 0) { text.WriteLine($"{name}: {score}"); }
