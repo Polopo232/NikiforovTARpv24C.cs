@@ -16,7 +16,7 @@ namespace EsimeneTund
             }
             catch
             {
-                // Игнорируем ошибки
+                // nothing
             }
         }
     }
