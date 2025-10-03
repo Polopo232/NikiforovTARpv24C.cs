@@ -32,6 +32,8 @@ internal class SnakeProgram
         string gameOverSoundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\snakeresourse\game-over-mario.wav");
 
         SoundPlay soundPlay = new SoundPlay();
+        GameOverShow gameOverShow = new GameOverShow();
+
 
         GameChoose gameChoose = new GameChoose();
         gameChoose.ChooseMode();
@@ -134,51 +136,7 @@ internal class SnakeProgram
                 }
                 else
                 {
-                    Console.Clear();
-                    gameChoose.WriteCentered($"Score: {score}");
-                    gameChoose.WriteCentered("Liidrite nimekiri: ");
-                    if (File.Exists(path))
-                    {
-                        string[] allLines = File.ReadAllLines(path);
-
-                        List<string> names = new List<string>();
-                        List<int> scores = new List<int>();
-
-                        foreach (string line in allLines)
-                        {
-                            string[] parts = line.Split(':');
-                            if (parts.Length >= 2)
-                            {
-                                if (int.TryParse(parts[1].Trim(), out int playerScore))
-                                {
-                                    names.Add(parts[0].Trim());
-                                    scores.Add(playerScore);
-                                }
-                            }
-                        }
-                        for (int i = 0; i < scores.Count - 1; i++)
-                        {
-                            for (int j = i + 1; j < scores.Count; j++)
-                            {
-                                if (scores[i] < scores[j])
-                                {
-                                    int tempScore = scores[i];
-                                    scores[i] = scores[j];
-                                    scores[j] = tempScore;
-
-                                    string tempName = names[i];
-                                    names[i] = names[j];
-                                    names[j] = tempName;
-                                }
-                            }
-                        }
-                        for (int i = 0; i < names.Count; i++)
-                        {
-                            gameChoose.WriteCentered($"{i + 1}. {names[i]}: {scores[i]}");
-                        }
-                        gameChoose.WriteCentered("Sisesta nimi: ");
-                        name = Console.ReadLine();
-                    }
+                    name = gameOverShow.Show(path, gameChoose, score);
                     game_over = true;
                     break;
                 }
