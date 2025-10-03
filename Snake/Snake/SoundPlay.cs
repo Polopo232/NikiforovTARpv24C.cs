@@ -1,24 +1,23 @@
 ﻿using System.Media;
-using EsimeneTund;
+using System.IO;
 
-namespace Snake.Snake;
-
-internal class SoundPlay
+namespace EsimeneTund
 {
-    public class SoundManager
+    internal class SoundPlay
     {
         public void Play(string soundPath)
         {
-            if (File.Exists(soundPath))
+            if (!File.Exists(soundPath)) return;
+
+            try
             {
-                try
-                {
-                    SoundPlayer player = new SoundPlayer(soundPath);
-                    player.Play();
-                }
-                catch { }
+                using SoundPlayer player = new SoundPlayer(soundPath);
+                player.Play();
+            }
+            catch
+            {
+                // Игнорируем ошибки
             }
         }
     }
-
 }

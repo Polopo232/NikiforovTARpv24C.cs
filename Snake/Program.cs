@@ -186,8 +186,7 @@ internal class SnakeProgram
 
             if (snake.Eat(food))
             {
-                SoundPlayer player = new SoundPlayer(specialSoundPath);
-                player.Play();
+                soundPlay.Play(soundPath);
 
                 score++;
                 DrawScore.UpdateScoreDisplay(score);
@@ -197,8 +196,7 @@ internal class SnakeProgram
             }
             else if (specialFood != null && snake.Eat(specialFood))
             {
-                SoundPlayer player = new SoundPlayer(specialSoundPath);
-                player.Play();
+                soundPlay.Play(specialSoundPath);
                 extraLives++;
                 DrawScore.UpdateLivesDisplay(extraLives);
                 specialFood = null;
@@ -212,8 +210,7 @@ internal class SnakeProgram
 
         if (game_over)
         {
-            SoundPlayer player = new SoundPlayer(gameOverSoundPath);
-            player.Play();
+            soundPlay.Play(gameOverSoundPath);
             using (StreamWriter text = new StreamWriter(path, true))
             {
                 if (score != 0) { text.WriteLine($"{name}: {score}"); }
