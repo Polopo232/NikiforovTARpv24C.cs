@@ -30,52 +30,37 @@ internal class GameChoose
         WriteCentered("3. Inversioon");
         WriteCentered("4. Expert");
 
-        while (true)
-        {
-            try
-            {
+        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-                input = int.Parse(Console.ReadLine());
-                break;
-            }
-            catch (Exception e)
-            {
-                Console.Clear();
+        WriteCentered("Vali mängurežiim:");
+        WriteCentered("1. Tavaline");
+        WriteCentered("2. SpeedUP");
+        WriteCentered("3. Inversioon");
+        WriteCentered("4. Expert");
 
-                WriteCentered(e.Message);
 
-                WriteCentered("Vali mängurežiim:");
-                WriteCentered("1. Tavaline");
-                WriteCentered("2. SpeedUP");
-                WriteCentered("3. Inversioon");
-                WriteCentered("4. Expert");
-            }
-        }
-
-        
-
-        if (input == 1)
+        if (keyInfo.Key == ConsoleKey.D1)
         {
             chosenMode = 1;
             speed = 100;
             inversion = false;
             WriteCentered("Valisid tavalse režiimi");
         }
-        else if (input == 2)
+        else if (keyInfo.Key == ConsoleKey.D2)
         {
             chosenMode = 2;
             speed = 100;
             inversion = false;
             WriteCentered("Valisid SpeedUP režiimi");
         }
-        else if (input == 3)
+        else if (keyInfo.Key == ConsoleKey.D3)
         {
             chosenMode = 3;
             speed = 100;
             inversion = true;
             WriteCentered("Valisid inversiooni režiimi");
         }
-        else if (input == 4)
+        else if (keyInfo.Key == ConsoleKey.D4)
         {
             chosenMode = 4;
             speed = 80;
